@@ -1,6 +1,6 @@
-﻿// xll_template.cpp - Sample xll project.
+﻿// main.cpp - xll project.
 #include <cmath> // for double tgamma(double)
-#include "xll_template.h"
+#include "main.h"
 
 using namespace xll;
 
@@ -9,7 +9,7 @@ AddIn xai_tgamma(
 	Function(XLL_DOUBLE, "xll_tgamma", "TGAMMA")
 	// Array of function arguments.
 	.Arguments({
-		Arg(XLL_DOUBLE, "x", "is the value for which you want to calculate Gamma.")
+		Arg(XLL_DOUBLE, "x", "is the value for which you want to calculate TGAMMA.")
 	})
 	// Function Wizard help.
 	.FunctionHelp("Return the Gamma function value.")
@@ -51,6 +51,53 @@ int WINAPI xll_macro(void)
 
 	return TRUE;
 }
+
+
+////
+
+AddIn xai_myfunction(
+	// Return double, C++ name of function, Excel name.
+	Function(XLL_DOUBLE, "xll_myfunction", "MYSUM")
+	// Array of function arguments.
+	.Arguments({
+		Arg(XLL_DOUBLE, "x", "is the value for which you want to calculate SUM1."),
+		Arg(XLL_DOUBLE, "y", "is the value for which you want to calculate SUM2.")
+		})
+	// Function Wizard help.
+	.FunctionHelp("Return the Sum function value.")
+	// Function Wizard category.
+	.Category("ddFunction")
+	// URL linked to `Help on this function`.
+	.HelpTopic("https://docs.microsoft.com/en-us/cpp/c-runtime-library/reference/tgamma-tgammaf-tgammal")
+	.Documentation(R"xyzyx(
+The <i>Gamma</i> function is \(\Gamma(x) = \int_0^\infty t^{x - 1} e^{-t}\,dt\), \(x \ge 0\).
+If \(n\) is a natural number then \(\Gamma(n + 1) = n! = n(n - 1)\cdots 1\).
+<p>
+Any valid HTML using <a href="https://katex.org/" target="_blank">KaTeX</a> can 
+be used for documentation.
+)xyzyx")
+);
+// WINAPI calling convention must be specified
+double xll_myfunction(double x, double y)
+{
+#pragma XLLEXPORT // must be specified to export function
+
+	return x + y;
+}
+
+
+
+
+////
+
+
+
+
+
+
+
+
+
 
 #ifdef _DEBUG
 
