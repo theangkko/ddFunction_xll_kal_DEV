@@ -95,10 +95,6 @@ double xll_myfunction(double x, double y)
 
 
 
-
-
-
-
 #ifdef _DEBUG
 
 // Create XML documentation and index.html in `$(TargetPath)` folder.
